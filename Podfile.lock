@@ -1,0 +1,63 @@
+PODS:
+  - AFNetworking (2.1.0):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+    - AFNetworking/UIKit
+  - AFNetworking/NSURLConnection (2.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.1.0):
+    - AFNetworking/NSURLConnection
+  - AFNetworking/Reachability (2.1.0)
+  - AFNetworking/Security (2.1.0)
+  - AFNetworking/Serialization (2.1.0)
+  - AFNetworking/UIKit (2.1.0):
+    - AFNetworking/NSURLConnection
+  - Facebook-iOS-SDK (3.9.0)
+  - Loopy (1.0.0-RC3):
+    - AFNetworking
+  - Socialize (3.0.1):
+    - Facebook-iOS-SDK (~> 3.9.0)
+    - Loopy
+    - SZBlocksKit
+    - SZJSONKit
+    - SZOAuthConsumer
+  - SZBlocksKit (2.1.0):
+    - SZBlocksKit/All
+  - SZBlocksKit/All (2.1.0):
+    - SZBlocksKit/Core
+    - SZBlocksKit/DynamicDelegate
+    - SZBlocksKit/MessageUI
+    - SZBlocksKit/UIKit
+  - SZBlocksKit/Core (2.1.0)
+  - SZBlocksKit/DynamicDelegate (2.1.0):
+    - SZBlocksKit/MiniFFI
+  - SZBlocksKit/MessageUI (2.1.0):
+    - SZBlocksKit/DynamicDelegate
+  - SZBlocksKit/MiniFFI (2.1.0)
+  - SZBlocksKit/UIKit (2.1.0):
+    - SZBlocksKit/DynamicDelegate
+  - SZJSONKit (1.5)
+  - SZOAuthConsumer (0.0.2)
+
+DEPENDENCIES:
+  - Socialize (from `https://raw.github.com/socialize/socialize-sdk-ios/feature/library-merge/Socialize.podspec`)
+
+EXTERNAL SOURCES:
+  Socialize:
+    :podspec: https://raw.github.com/socialize/socialize-sdk-ios/feature/library-merge/Socialize.podspec
+
+SPEC CHECKSUMS:
+  AFNetworking: c7d7901a83f631414c7eda1737261f696101a5cd
+  Facebook-iOS-SDK: 7481d6b02b016d9fbef9ca7ecf2dcc73b673707d
+  Loopy: 74cc1a2fd5d3f568d932565c516e09320be2bed3
+  Socialize: 2fab10ad23d4d386d4bb8cf42cefa85b146590bd
+  SZBlocksKit: 659b06061c9179b20674e8f475661187d4f7a6a6
+  SZJSONKit: fd05b670dc400e1f9ba44c8bb23c44897e71b9ec
+  SZOAuthConsumer: b62a98025846d76778ca4f24528a5c51b8e66ee6
+
+COCOAPODS: 0.29.0
