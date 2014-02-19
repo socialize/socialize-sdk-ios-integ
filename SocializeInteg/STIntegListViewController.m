@@ -8,113 +8,265 @@
 
 #import "STIntegListViewController.h"
 
-@interface STIntegListViewController ()
+static NSString *CellIdentifier = @"CellIdentifier";
 
+static NSString *kSectionIdentifier = @"kSectionIdentifier";
+static NSString *kSectionTitle = @"kSectionTitle";
+static NSString *kSectionRows = @"kSectionRows";
+
+static NSString *kRowExecutionBlock = @"kRowExecutionBlock";
+static NSString *kRowText = @"kRowText";
+static NSString *kRowIdentifier = @"kRowIdentifier";
+
+// Sections
+NSString *kConfigSection = @"kConfigSection";
+NSString *kUserSection = @"kUserSection";
+NSString *kShareSection = @"kShareSection";
+NSString *kCommentSection = @"kCommentSection";
+NSString *kLikeSection = @"kLikeSection";
+NSString *kFacebookSection = @"kFacebookSection";
+NSString *kTwitterSection = @"kTwitterSection";
+NSString *kSmartAlertsSection = @"kSmartAlertsSection";
+NSString *kActionBarSection = @"kActionBarSection";
+NSString *kButtonsExampleSection = @"kButtonsExampleSection";
+
+// Rows
+NSString *kShowLinkDialogRow = @"kShowLinkDialogRow";
+NSString *kShowUserProfileRow = @"kShowUserProfileRow";
+NSString *kShowCommentComposerRow = @"kShowCommentComposerRow";
+NSString *kShowCommentsListRow = @"kShowCommentsListRow";
+NSString *kLinkToFacebookRow = @"kLinkToFacebookRow";
+NSString *kLinkToTwitterRow = @"kLinkToTwitterRow";
+NSString *kLikeEntityRow = @"kLikeEntityRow";
+NSString *kShowShareRow = @"kShowShareRow";
+NSString *kHandleDirectURLSmartAlertRow = @"kHandleDirectURLSmartAlertRow";
+NSString *kHandleDirectEntitySmartAlertRow = @"kHandleDirectEntitySmartAlertRow";
+NSString *kShowActionBarExampleRow = @"kShowActionBarExampleRow";
+NSString *kShowButtonsExampleRow = @"kShowButtonsExampleRow";
+
+@interface STIntegListViewController ()
+@property (nonatomic, strong) NSArray *sections;
 @end
 
 @implementation STIntegListViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+@synthesize sections = sections_;
+@synthesize entity = entity_;
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.sections = [self createSections];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (id<SZEntity>)entity {
+    if (entity_ == nil) {
+        entity_ = [SZEntity entityWithKey:@"Something" name:@"Something"];
+    }
+    return entity_;
 }
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return [self.sections count];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [[[self.sections objectAtIndex:section] objectForKey:kSectionRows] count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+- (NSDictionary*)sectionDataForSection:(NSUInteger)section {
+    return [self.sections objectAtIndex:section];
+}
+
+- (NSDictionary*)rowDataForIndexPath:(NSIndexPath*)indexPath {
+    NSDictionary *section = [self sectionDataForSection:indexPath.section];
+    NSDictionary *data = [[section objectForKey:kSectionRows] objectAtIndex:indexPath.row];
     
-    // Configure the cell...
+    return data;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+    }
+    
+    NSDictionary *rowData = [self rowDataForIndexPath:indexPath];
+    cell.textLabel.text = [rowData objectForKey:kRowText];
     
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (NSArray*)createSections {
+    // General
+    NSMutableArray *configRows = [NSMutableArray array];
+    [configRows addObject:[self rowWithText:@"Wipe Auth Data" executionBlock:^{
+        [[Socialize sharedSocialize] removeAuthenticationInfo];
+        [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+    }]];
+    
+    // User Utilities
+    NSMutableArray *userRows = [NSMutableArray array];
+    [userRows addObject:[self rowWithIdentifier:kShowLinkDialogRow text:@"Show Link Dialog" executionBlock:^{
+        [SZUserUtils showLinkDialogWithViewController:self completion:nil cancellation:nil];
+    }]];
+    
+    [userRows addObject:[self rowWithIdentifier:kShowUserProfileRow text:@"Show User Profile" executionBlock:^{
+        id<SocializeFullUser> user = [SZUserUtils currentUser];
+        [SZUserUtils showUserProfileInViewController:self user:user completion:nil];
+    }]];
+    
+    [userRows addObject:[self rowWithText:@"Show User Settings" executionBlock:^{
+        [SZUserUtils showUserSettingsInViewController:self completion:nil];
+    }]];
+    
+    // Share Utilities
+    NSMutableArray *shareRows = [NSMutableArray array];
+    [shareRows addObject:[self rowWithIdentifier:kShowShareRow text:@"Show Share Dialog" executionBlock:^{
+        SZShareOptions *options = [[SZShareOptions alloc] init];
+        options.willShowSMSComposerBlock = ^(SZSMSShareData *smsData) {
+            NSLog(@"Sharing SMS");
+        };
+        
+        options.willShowEmailComposerBlock = ^(SZEmailShareData *emailData) {
+            NSLog(@"Sharing Email");
+        };
+        
+        options.willRedirectToPinterestBlock = ^(SZPinterestShareData *pinData) {
+            NSLog(@"Sharing pin");
+        };
+        
+        options.willAttemptPostingToSocialNetworkBlock = ^(SZSocialNetwork network, SZSocialNetworkPostData *postData) {
+            NSLog(@"Posting to %d", network);
+        };
+        
+        options.didSucceedPostingToSocialNetworkBlock = ^(SZSocialNetwork network, id result) {
+            NSLog(@"Posted %@ to %d", result, network);
+        };
+        
+        options.didFailPostingToSocialNetworkBlock = ^(SZSocialNetwork network, NSError *error) {
+            NSLog(@"Failed posting to %d", network);
+        };
+        
+        [SZShareUtils showShareDialogWithViewController:self options:options entity:self.entity completion:nil cancellation:nil];
+        
+    }]];
+
+    
+    NSMutableArray *commentRows = [NSMutableArray array];
+    [commentRows addObject:[self rowWithIdentifier:kShowCommentsListRow text:@"Show Comments List" executionBlock:^{
+        SZCommentOptions* options = [SZCommentUtils userCommentOptions];
+        options.text = @"Hello world";
+        
+        SZCommentsListViewController *comments = [[SZCommentsListViewController alloc] initWithEntity:self.entity];
+        comments.completionBlock = ^{
+            
+            // Dismiss however you want here
+            [self dismissViewControllerAnimated:NO completion:nil];
+        };
+        comments.commentOptions = options;
+        
+        // Present however you want here
+        [self presentViewController:comments animated:NO completion:nil];
+        
+        
+        
+    }]];
+    
+    [commentRows addObject:[self rowWithIdentifier:kShowCommentComposerRow text:@"Show Comment Composer" executionBlock:^{
+        [SZCommentUtils showCommentComposerWithViewController:self entity:self.entity completion:nil cancellation:nil];
+    }]];
+    
+    NSMutableArray *likeRows = [NSMutableArray array];
+    [likeRows addObject:[self rowWithIdentifier:kLikeEntityRow text:@"Like an Entity" executionBlock:^{
+        SZLikeOptions *options = [SZLikeUtils userLikeOptions];
+        //        options.willAttemptPostToSocialNetworkBlock = ^(SZSocialNetwork network, SZSocialNetworkPostData *postData) {
+        //            postData.path = @"me/feed";
+        //            [postData.params setObject:@"blah" forKey:@"description"];
+        //        };
+        //
+        [SZLikeUtils likeWithViewController:self options:options entity:self.entity success:nil failure:nil];
+    }]];
+    
+//    NSMutableArray *actionBarRows = [NSMutableArray array];
+//    [actionBarRows addObject:[self rowWithIdentifier:kShowActionBarExampleRow text:@"Show Action Bar Example" executionBlock:^{
+//        ActionBarExampleViewController *actionBarExample = [[ActionBarExampleViewController alloc] initWithEntity:self.entity];
+//        SZNavigationController *nav = [[SZNavigationController alloc] initWithRootViewController:actionBarExample];
+//        [self presentViewController:nav animated:YES completion:nil];
+//    }]];
+//    
+//    NSMutableArray *buttonsRows = [NSMutableArray array];
+//    [buttonsRows addObject:[self rowWithIdentifier:kShowButtonsExampleRow text:@"Show Button Examples" executionBlock:^{
+//        ButtonExampleViewController *buttonsExample = [[ButtonExampleViewController alloc] initWithEntity:self.entity];
+//        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:buttonsExample];
+//        [self presentViewController:nav animated:YES completion:nil];
+//    }]];
+    
+    NSArray *sections = [NSArray arrayWithObjects:
+                         [self sectionWithIdentifier:kConfigSection
+                                               title:@"Configuration"
+                                                rows:configRows],
+                         
+                         [self sectionWithIdentifier:kUserSection
+                                               title:@"User Utilities"
+                                                rows:userRows],
+                         
+                         [self sectionWithIdentifier:kShareSection
+                                               title:@"Share Utilities"
+                                                rows:shareRows],
+                         
+                         [self sectionWithIdentifier:kCommentSection
+                                               title:@"Comment Utilities"
+                                                rows:commentRows],
+                         
+                         [self sectionWithIdentifier:kLikeSection
+                                               title:@"Like Utilities"
+                                                rows:likeRows],
+                         
+//                         [self sectionWithIdentifier:kActionBarSection
+//                                               title:@"Action Bar Utilities"
+//                                                rows:actionBarRows],
+//                         
+//                         [self sectionWithIdentifier:kButtonsExampleSection
+//                                               title:@"Buttons Example"
+//                                                rows:buttonsRows],
+                         
+                         nil];
+
+    return sections;
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    NSDictionary *sectionData = [self sectionDataForSection:section];
+    return [sectionData objectForKey:kSectionTitle];
 }
 
- */
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSDictionary *rowData = [self rowDataForIndexPath:indexPath];
+    void (^executionBlock)() = [rowData objectForKey:kRowExecutionBlock];
+    executionBlock();
+}
+
+- (NSDictionary*)rowWithText:(NSString*)text executionBlock:(void(^)())executionBlock {
+    return [self rowWithIdentifier:@"undefined" text:text executionBlock:executionBlock];
+}
+
+
+- (NSDictionary*)rowWithIdentifier:(NSString*)identifier text:(NSString*)text executionBlock:(void(^)())executionBlock {
+    return [NSDictionary dictionaryWithObjectsAndKeys:
+            identifier, kRowIdentifier,
+            text, kRowText,
+            [executionBlock copy], kRowExecutionBlock,
+            nil];
+}
+
+- (NSDictionary*)sectionWithIdentifier:(NSString*)identifier title:(NSString*)title rows:(NSArray*)rows {
+    return [NSDictionary dictionaryWithObjectsAndKeys:
+            identifier, kSectionIdentifier,
+            title, kSectionTitle,
+            rows, kSectionRows,
+            nil];
+}
 
 @end

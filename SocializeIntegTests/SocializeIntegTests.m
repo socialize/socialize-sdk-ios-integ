@@ -7,6 +7,11 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "KIFUITestActor.h"
+#import <KIF/UIApplication-KIFAdditions.h>
+#import <KIF/UIAccessibilityElement-KIFAdditions.h>
+#import <KIF/CGGeometry-KIFAdditions.h>
+#import <KIF/UIWindow-KIFAdditions.h>
 
 @interface SocializeIntegTests : XCTestCase
 

@@ -7,17 +7,33 @@
 //
 
 #import "STAppDelegate.h"
+#import "STIntegListViewController.h"
+#import <Socialize/Socialize.h>
 
 @implementation STAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
+
+    [Socialize storeOGLikeEnabled:YES];
+    [Socialize storeAnonymousAllowed:YES];
+    [Socialize storeConsumerKey:@"976421bd-0bc9-44c8-a170-bd12376123a3"];
+    [Socialize storeConsumerSecret:@"2bf36ced-b9ab-4c5b-b054-8ca975d39c14"];
+    [SZTwitterUtils setConsumerKey:@"ZWxJ0zIK73n5HKwGLHolQ" consumerSecret:@"3K1LTY39QM9DPAqJzSZAD3L2EBEXXvuCdtTRr8NDd8"];
+    [SZFacebookUtils setAppId:@"268891373224435"];
+    
+    STIntegListViewController *listView = [[STIntegListViewController alloc] init];
+    self.window.rootViewController = listView;
     [self.window makeKeyAndVisible];
     return YES;
 }
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    return [Socialize handleOpenURL:url];
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {

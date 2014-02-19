@@ -18,6 +18,9 @@ PODS:
   - AFNetworking/UIKit (2.1.0):
     - AFNetworking/NSURLConnection
   - Facebook-iOS-SDK (3.9.0)
+  - KIF/Core (2.0.0)
+  - KIF/XCTest (2.0.0):
+    - KIF/Core
   - Loopy (1.0.0-RC3):
     - AFNetworking
   - Socialize (3.0.1):
@@ -45,15 +48,20 @@ PODS:
   - SZOAuthConsumer (0.0.2)
 
 DEPENDENCIES:
+  - KIF/XCTest (from `https://github.com/tonyd256/KIF`, branch `xctest`)
   - Socialize (from `https://raw.github.com/socialize/socialize-sdk-ios/feature/library-merge/Socialize.podspec`)
 
 EXTERNAL SOURCES:
+  KIF:
+    :branch: xctest
+    :git: https://github.com/tonyd256/KIF
   Socialize:
     :podspec: https://raw.github.com/socialize/socialize-sdk-ios/feature/library-merge/Socialize.podspec
 
 SPEC CHECKSUMS:
   AFNetworking: c7d7901a83f631414c7eda1737261f696101a5cd
   Facebook-iOS-SDK: 7481d6b02b016d9fbef9ca7ecf2dcc73b673707d
+  KIF: 09880fd0895146aa90b92f8d77bf5ec42f25622d
   Loopy: 74cc1a2fd5d3f568d932565c516e09320be2bed3
   Socialize: 2fab10ad23d4d386d4bb8cf42cefa85b146590bd
   SZBlocksKit: 659b06061c9179b20674e8f475661187d4f7a6a6
