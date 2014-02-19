@@ -25,6 +25,11 @@
 		2CB1E57618B529E900DAD2F6 /* ActionBarExampleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CB1E57118B529E900DAD2F6 /* ActionBarExampleViewController.xib */; };
 		2CB1E57718B529E900DAD2F6 /* ButtonExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CB1E57318B529E900DAD2F6 /* ButtonExampleViewController.m */; };
 		2CB1E57818B529E900DAD2F6 /* ButtonExampleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CB1E57418B529E900DAD2F6 /* ButtonExampleViewController.xib */; };
+		2CB1E57A18B55C4C00DAD2F6 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CB1E57918B55C4C00DAD2F6 /* AdSupport.framework */; };
+		2CB1E57C18B55C5300DAD2F6 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CB1E57B18B55C5300DAD2F6 /* MapKit.framework */; };
+		2CB1E57E18B55C5B00DAD2F6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CB1E57D18B55C5B00DAD2F6 /* QuartzCore.framework */; };
+		2CB1E58018B55C6100DAD2F6 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CB1E57F18B55C6100DAD2F6 /* CoreLocation.framework */; };
+		2CB1E58218B55C6900DAD2F6 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CB1E58118B55C6900DAD2F6 /* MessageUI.framework */; };
 		5DAFA5B2CAF644EBB1E3DC6F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 62F8C6B5DE944F96B3FEB355 /* libPods.a */; };
 		C05DD5FDC849427FB5C5F09C /* libPods-SocializeIntegTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6340933BF8424A8F9681E83F /* libPods-SocializeIntegTests.a */; };
 /* End PBXBuildFile section */
@@ -66,6 +71,11 @@
 		2CB1E57218B529E900DAD2F6 /* ButtonExampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonExampleViewController.h; sourceTree = "<group>"; };
 		2CB1E57318B529E900DAD2F6 /* ButtonExampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonExampleViewController.m; sourceTree = "<group>"; };
 		2CB1E57418B529E900DAD2F6 /* ButtonExampleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ButtonExampleViewController.xib; sourceTree = "<group>"; };
+		2CB1E57918B55C4C00DAD2F6 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		2CB1E57B18B55C5300DAD2F6 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		2CB1E57D18B55C5B00DAD2F6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		2CB1E57F18B55C6100DAD2F6 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		2CB1E58118B55C6900DAD2F6 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		58050F449F15405998DB4357 /* Pods-SocializeIntegTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SocializeIntegTests.xcconfig"; path = "Pods/Pods-SocializeIntegTests.xcconfig"; sourceTree = "<group>"; };
 		62F8C6B5DE944F96B3FEB355 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6340933BF8424A8F9681E83F /* libPods-SocializeIntegTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SocializeIntegTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,6 +87,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CB1E58218B55C6900DAD2F6 /* MessageUI.framework in Frameworks */,
+				2CB1E58018B55C6100DAD2F6 /* CoreLocation.framework in Frameworks */,
+				2CB1E57E18B55C5B00DAD2F6 /* QuartzCore.framework in Frameworks */,
+				2CB1E57C18B55C5300DAD2F6 /* MapKit.framework in Frameworks */,
+				2CB1E57A18B55C4C00DAD2F6 /* AdSupport.framework in Frameworks */,
 				2C74937318B3E11A00B81FFF /* CoreGraphics.framework in Frameworks */,
 				2C74937518B3E11A00B81FFF /* UIKit.framework in Frameworks */,
 				2C74937118B3E11A00B81FFF /* Foundation.framework in Frameworks */,
@@ -122,6 +137,11 @@
 		2C74936F18B3E11A00B81FFF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2CB1E58118B55C6900DAD2F6 /* MessageUI.framework */,
+				2CB1E57F18B55C6100DAD2F6 /* CoreLocation.framework */,
+				2CB1E57D18B55C5B00DAD2F6 /* QuartzCore.framework */,
+				2CB1E57B18B55C5300DAD2F6 /* MapKit.framework */,
+				2CB1E57918B55C4C00DAD2F6 /* AdSupport.framework */,
 				2C74937018B3E11A00B81FFF /* Foundation.framework */,
 				2C74937218B3E11A00B81FFF /* CoreGraphics.framework */,
 				2C74937418B3E11A00B81FFF /* UIKit.framework */,
