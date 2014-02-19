@@ -44,6 +44,8 @@ NSString *kHandleDirectEntitySmartAlertRow = @"kHandleDirectEntitySmartAlertRow"
 NSString *kShowActionBarExampleRow = @"kShowActionBarExampleRow";
 NSString *kShowButtonsExampleRow = @"kShowButtonsExampleRow";
 
+static STIntegListViewController *sharedSampleListViewController;
+
 @interface STIntegListViewController ()
 @property (nonatomic, strong) NSArray *sections;
 @end
@@ -52,6 +54,15 @@ NSString *kShowButtonsExampleRow = @"kShowButtonsExampleRow";
 
 @synthesize sections = sections_;
 @synthesize entity = entity_;
+
+
++ (STIntegListViewController*)sharedSampleListViewController {
+    if (sharedSampleListViewController == nil) {
+        sharedSampleListViewController = [[STIntegListViewController alloc] init];
+    }
+    
+    return sharedSampleListViewController;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -64,8 +75,6 @@ NSString *kShowButtonsExampleRow = @"kShowButtonsExampleRow";
     }
     return entity_;
 }
-
-#pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return [self.sections count];
@@ -96,6 +105,34 @@ NSString *kShowButtonsExampleRow = @"kShowButtonsExampleRow";
     cell.textLabel.text = [rowData objectForKey:kRowText];
     
     return cell;
+}
+
+- (NSUInteger)indexForSectionIdentifier:(NSString*)identifier {
+    for (int i = 0; i < [self.sections count]; i++) {
+        NSDictionary *section = [self.sections objectAtIndex:i];
+        if ([[section objectForKey:kSectionIdentifier] isEqualToString:identifier]) {
+            return i;
+        }
+    }
+    
+    return NSNotFound;
+}
+
+- (NSIndexPath*)indexPathForRowIdentifier:(NSString*)identifier {
+    for (int s = 0; s < [self.sections count]; s++) {
+        NSDictionary *section = [self.sections objectAtIndex:s];
+        
+        NSArray *rows = [section objectForKey:kSectionRows];
+        for (int r = 0; r < [rows count]; r++) {
+            NSDictionary *row = [rows objectAtIndex:r];
+            
+            if ([[row objectForKey:kRowIdentifier] isEqualToString:identifier]) {
+                return [NSIndexPath indexPathForRow:r inSection:s];
+            }
+        }
+    }
+    
+    return nil;
 }
 
 - (NSArray*)createSections {

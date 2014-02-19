@@ -34,4 +34,8 @@ extern NSString *kShowButtonsExampleRow;
 
 @property (nonatomic, retain) id<SZEntity> entity;
 
++ (STIntegListViewController*)sharedSampleListViewController;
+- (NSUInteger)indexForSectionIdentifier:(NSString*)identifier;
+- (NSIndexPath*)indexPathForRowIdentifier:(NSString*)identifier;
+
 @end

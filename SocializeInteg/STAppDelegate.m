@@ -24,7 +24,7 @@
     [SZTwitterUtils setConsumerKey:@"ZWxJ0zIK73n5HKwGLHolQ" consumerSecret:@"3K1LTY39QM9DPAqJzSZAD3L2EBEXXvuCdtTRr8NDd8"];
     [SZFacebookUtils setAppId:@"268891373224435"];
     
-    STIntegListViewController *listView = [[STIntegListViewController alloc] init];
+    STIntegListViewController *listView = [STIntegListViewController sharedSampleListViewController];
     self.window.rootViewController = listView;
     [self.window makeKeyAndVisible];
     return YES;
