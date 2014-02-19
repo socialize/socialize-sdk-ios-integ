@@ -21,6 +21,10 @@
 		2C74939618B3E11B00B81FFF /* SocializeIntegTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C74939518B3E11B00B81FFF /* SocializeIntegTests.m */; };
 		2C7493A318B3EF0F00B81FFF /* STIntegListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7493A218B3EF0F00B81FFF /* STIntegListViewController.m */; };
 		2C7493A618B4320300B81FFF /* KIFUITestActor+SocializeInteg.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7493A518B4320300B81FFF /* KIFUITestActor+SocializeInteg.m */; };
+		2CB1E57518B529E900DAD2F6 /* ActionBarExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CB1E57018B529E900DAD2F6 /* ActionBarExampleViewController.m */; };
+		2CB1E57618B529E900DAD2F6 /* ActionBarExampleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CB1E57118B529E900DAD2F6 /* ActionBarExampleViewController.xib */; };
+		2CB1E57718B529E900DAD2F6 /* ButtonExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CB1E57318B529E900DAD2F6 /* ButtonExampleViewController.m */; };
+		2CB1E57818B529E900DAD2F6 /* ButtonExampleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CB1E57418B529E900DAD2F6 /* ButtonExampleViewController.xib */; };
 		5DAFA5B2CAF644EBB1E3DC6F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 62F8C6B5DE944F96B3FEB355 /* libPods.a */; };
 		C05DD5FDC849427FB5C5F09C /* libPods-SocializeIntegTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6340933BF8424A8F9681E83F /* libPods-SocializeIntegTests.a */; };
 /* End PBXBuildFile section */
@@ -56,6 +60,12 @@
 		2C7493A218B3EF0F00B81FFF /* STIntegListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STIntegListViewController.m; sourceTree = "<group>"; };
 		2C7493A418B4320300B81FFF /* KIFUITestActor+SocializeInteg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "KIFUITestActor+SocializeInteg.h"; path = "SocializeIntegTests/KIFUITestActor+SocializeInteg.h"; sourceTree = SOURCE_ROOT; };
 		2C7493A518B4320300B81FFF /* KIFUITestActor+SocializeInteg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "KIFUITestActor+SocializeInteg.m"; path = "SocializeIntegTests/KIFUITestActor+SocializeInteg.m"; sourceTree = SOURCE_ROOT; };
+		2CB1E56F18B529E900DAD2F6 /* ActionBarExampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionBarExampleViewController.h; sourceTree = "<group>"; };
+		2CB1E57018B529E900DAD2F6 /* ActionBarExampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionBarExampleViewController.m; sourceTree = "<group>"; };
+		2CB1E57118B529E900DAD2F6 /* ActionBarExampleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActionBarExampleViewController.xib; sourceTree = "<group>"; };
+		2CB1E57218B529E900DAD2F6 /* ButtonExampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonExampleViewController.h; sourceTree = "<group>"; };
+		2CB1E57318B529E900DAD2F6 /* ButtonExampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonExampleViewController.m; sourceTree = "<group>"; };
+		2CB1E57418B529E900DAD2F6 /* ButtonExampleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ButtonExampleViewController.xib; sourceTree = "<group>"; };
 		58050F449F15405998DB4357 /* Pods-SocializeIntegTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SocializeIntegTests.xcconfig"; path = "Pods/Pods-SocializeIntegTests.xcconfig"; sourceTree = "<group>"; };
 		62F8C6B5DE944F96B3FEB355 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6340933BF8424A8F9681E83F /* libPods-SocializeIntegTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SocializeIntegTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,6 +135,12 @@
 		2C74937618B3E11A00B81FFF /* SocializeInteg */ = {
 			isa = PBXGroup;
 			children = (
+				2CB1E56F18B529E900DAD2F6 /* ActionBarExampleViewController.h */,
+				2CB1E57018B529E900DAD2F6 /* ActionBarExampleViewController.m */,
+				2CB1E57118B529E900DAD2F6 /* ActionBarExampleViewController.xib */,
+				2CB1E57218B529E900DAD2F6 /* ButtonExampleViewController.h */,
+				2CB1E57318B529E900DAD2F6 /* ButtonExampleViewController.m */,
+				2CB1E57418B529E900DAD2F6 /* ButtonExampleViewController.xib */,
 				2C74937F18B3E11A00B81FFF /* STAppDelegate.h */,
 				2C74938018B3E11A00B81FFF /* STAppDelegate.m */,
 				2C7493A118B3EF0F00B81FFF /* STIntegListViewController.h */,
@@ -246,8 +262,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CB1E57618B529E900DAD2F6 /* ActionBarExampleViewController.xib in Resources */,
 				2C74937B18B3E11A00B81FFF /* InfoPlist.strings in Resources */,
 				2C74938318B3E11A00B81FFF /* Images.xcassets in Resources */,
+				2CB1E57818B529E900DAD2F6 /* ButtonExampleViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,7 +348,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C7493A318B3EF0F00B81FFF /* STIntegListViewController.m in Sources */,
+				2CB1E57718B529E900DAD2F6 /* ButtonExampleViewController.m in Sources */,
 				2C74937D18B3E11A00B81FFF /* main.m in Sources */,
+				2CB1E57518B529E900DAD2F6 /* ActionBarExampleViewController.m in Sources */,
 				2C74938118B3E11A00B81FFF /* STAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

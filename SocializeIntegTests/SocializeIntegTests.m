@@ -31,16 +31,21 @@ static NSString *TestAppKIFTestControllerRunID = nil;
 
 @implementation SocializeIntegTests
 
-- (void)setUp
-{
+- (void)setUp {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+    
+    [Socialize storeUIErrorAlertsDisabled:YES];
+    [Socialize storeLocationSharingDisabled:YES];
+    
+    [tester initializeTest];
 }
 
-- (void)tearDown
-{
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
+- (void)tearDown {
     [super tearDown];
+    
+    //TODO this should happen after all tests
+//    [Socialize storeUIErrorAlertsDisabled:NO];
+//    [Socialize storeLocationSharingDisabled:NO];
 }
 
 - (void)testActionBar {
@@ -48,7 +53,27 @@ static NSString *TestAppKIFTestControllerRunID = nil;
     id<SZEntity> entity = [SZEntity entityWithKey:entityKey name:@"Test"];
     [[STIntegListViewController sharedSampleListViewController] setEntity:entity];
     
-//    [tester openActionBarExample];
+    [tester openActionBarExample];
+
+    [tester tapViewWithAccessibilityLabel:@"comment button"];
+    [tester tapViewWithAccessibilityLabel:@"Close"];
+    
+    [tester tapViewWithAccessibilityLabel:@"views button"];
+    [tester tapViewWithAccessibilityLabel:@"Cancel"];
+    
+    [tester tapViewWithAccessibilityLabel:@"share button"];
+    [tester tapViewWithAccessibilityLabel:@"Cancel"];
+    
+    [tester tapViewWithAccessibilityLabel:@"like button"];
+    [tester tapViewWithAccessibilityLabel:@"Skip"];
+    [tester verifyActionBarLikesAtCount:1];
+    [tester tapViewWithAccessibilityLabel:@"like button"];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:SocializeAuthenticatedUserDidChangeNotification object:[SZUserUtils currentUser]];
+    
+    [tester waitForViewWithAccessibilityLabel:@"In progress"];
+    [tester waitForAbsenceOfViewWithAccessibilityLabel:@"In progress"];
+    [tester tapViewWithAccessibilityLabel:@"Cancel"];
 }
 
 

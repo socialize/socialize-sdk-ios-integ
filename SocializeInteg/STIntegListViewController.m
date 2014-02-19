@@ -7,6 +7,8 @@
 //
 
 #import "STIntegListViewController.h"
+#import "ActionBarExampleViewController.h"
+#import "ButtonExampleViewController.h"
 
 static NSString *CellIdentifier = @"CellIdentifier";
 
@@ -67,7 +69,14 @@ static STIntegListViewController *sharedSampleListViewController;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.sections = [self createSections];
+    self.tableView.accessibilityLabel = @"tableView";
 }
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    self.tableView.frame = CGRectMake(0, 20, 320, 460);
+}
+
 
 - (id<SZEntity>)entity {
     if (entity_ == nil) {
@@ -226,19 +235,19 @@ static STIntegListViewController *sharedSampleListViewController;
         [SZLikeUtils likeWithViewController:self options:options entity:self.entity success:nil failure:nil];
     }]];
     
-//    NSMutableArray *actionBarRows = [NSMutableArray array];
-//    [actionBarRows addObject:[self rowWithIdentifier:kShowActionBarExampleRow text:@"Show Action Bar Example" executionBlock:^{
-//        ActionBarExampleViewController *actionBarExample = [[ActionBarExampleViewController alloc] initWithEntity:self.entity];
-//        SZNavigationController *nav = [[SZNavigationController alloc] initWithRootViewController:actionBarExample];
-//        [self presentViewController:nav animated:YES completion:nil];
-//    }]];
-//    
-//    NSMutableArray *buttonsRows = [NSMutableArray array];
-//    [buttonsRows addObject:[self rowWithIdentifier:kShowButtonsExampleRow text:@"Show Button Examples" executionBlock:^{
-//        ButtonExampleViewController *buttonsExample = [[ButtonExampleViewController alloc] initWithEntity:self.entity];
-//        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:buttonsExample];
-//        [self presentViewController:nav animated:YES completion:nil];
-//    }]];
+    NSMutableArray *actionBarRows = [NSMutableArray array];
+    [actionBarRows addObject:[self rowWithIdentifier:kShowActionBarExampleRow text:@"Show Action Bar Example" executionBlock:^{
+        ActionBarExampleViewController *actionBarExample = [[ActionBarExampleViewController alloc] initWithEntity:self.entity];
+        SZNavigationController *nav = [[SZNavigationController alloc] initWithRootViewController:actionBarExample];
+        [self presentViewController:nav animated:YES completion:nil];
+    }]];
+    
+    NSMutableArray *buttonsRows = [NSMutableArray array];
+    [buttonsRows addObject:[self rowWithIdentifier:kShowButtonsExampleRow text:@"Show Button Examples" executionBlock:^{
+        ButtonExampleViewController *buttonsExample = [[ButtonExampleViewController alloc] initWithEntity:self.entity];
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:buttonsExample];
+        [self presentViewController:nav animated:YES completion:nil];
+    }]];
     
     NSArray *sections = [NSArray arrayWithObjects:
                          [self sectionWithIdentifier:kConfigSection
@@ -261,13 +270,13 @@ static STIntegListViewController *sharedSampleListViewController;
                                                title:@"Like Utilities"
                                                 rows:likeRows],
                          
-//                         [self sectionWithIdentifier:kActionBarSection
-//                                               title:@"Action Bar Utilities"
-//                                                rows:actionBarRows],
-//                         
-//                         [self sectionWithIdentifier:kButtonsExampleSection
-//                                               title:@"Buttons Example"
-//                                                rows:buttonsRows],
+                         [self sectionWithIdentifier:kActionBarSection
+                                               title:@"Action Bar Utilities"
+                                                rows:actionBarRows],
+                         
+                         [self sectionWithIdentifier:kButtonsExampleSection
+                                               title:@"Buttons Example"
+                                                rows:buttonsRows],
                          
                          nil];
 
