@@ -26,6 +26,21 @@ PODS:
   - Socialize (3.0.1):
     - Facebook-iOS-SDK (~> 3.9.0)
     - Loopy
+    - Socialize/arc
+    - Socialize/no-arc
+    - SZBlocksKit
+    - SZJSONKit
+    - SZOAuthConsumer
+  - Socialize/arc (3.0.1):
+    - Facebook-iOS-SDK (~> 3.9.0)
+    - Loopy
+    - Socialize/no-arc
+    - SZBlocksKit
+    - SZJSONKit
+    - SZOAuthConsumer
+  - Socialize/no-arc (3.0.1):
+    - Facebook-iOS-SDK (~> 3.9.0)
+    - Loopy
     - SZBlocksKit
     - SZJSONKit
     - SZOAuthConsumer
@@ -63,7 +78,7 @@ SPEC CHECKSUMS:
   Facebook-iOS-SDK: 7481d6b02b016d9fbef9ca7ecf2dcc73b673707d
   KIF: 09880fd0895146aa90b92f8d77bf5ec42f25622d
   Loopy: 74cc1a2fd5d3f568d932565c516e09320be2bed3
-  Socialize: 2fab10ad23d4d386d4bb8cf42cefa85b146590bd
+  Socialize: d3fcdf6b0862abb9dc110d9298e08d9b09e70150
   SZBlocksKit: 659b06061c9179b20674e8f475661187d4f7a6a6
   SZJSONKit: fd05b670dc400e1f9ba44c8bb23c44897e71b9ec
   SZOAuthConsumer: b62a98025846d76778ca4f24528a5c51b8e66ee6
