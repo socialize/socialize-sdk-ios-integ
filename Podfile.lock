@@ -21,7 +21,7 @@ PODS:
   - KIF/Core (2.0.0)
   - KIF/XCTest (2.0.0):
     - KIF/Core
-  - Loopy (1.0.0-RC3):
+  - Loopy (1.0.0-RC4):
     - AFNetworking
   - Socialize (3.0.1):
     - Facebook-iOS-SDK (~> 3.9.0)
@@ -77,7 +77,7 @@ SPEC CHECKSUMS:
   AFNetworking: c7d7901a83f631414c7eda1737261f696101a5cd
   Facebook-iOS-SDK: 7481d6b02b016d9fbef9ca7ecf2dcc73b673707d
   KIF: 09880fd0895146aa90b92f8d77bf5ec42f25622d
-  Loopy: 74cc1a2fd5d3f568d932565c516e09320be2bed3
+  Loopy: 9d701bfce0a6b2ef6a2686d1c25e650df48072b4
   Socialize: d3fcdf6b0862abb9dc110d9298e08d9b09e70150
   SZBlocksKit: 659b06061c9179b20674e8f475661187d4f7a6a6
   SZJSONKit: fd05b670dc400e1f9ba44c8bb23c44897e71b9ec
