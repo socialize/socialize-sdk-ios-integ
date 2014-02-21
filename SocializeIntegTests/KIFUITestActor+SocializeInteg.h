@@ -35,3 +35,11 @@
 - (void)showCommentsList;
 
 @end
+
+@interface KIFUITestActor (Utils)
+- (void)initializeTest;
+- (void)authWithTwitter;
+- (void)scrollAndTapRowInTableViewWithAccessibilityLabel:(NSString*)tableViewLabel atIndexPath:(NSIndexPath *)indexPath;
+- (void)scrollTableViewWithAccessibilityLabel:(NSString*)label toRowAtIndexPath:(NSIndexPath*)indexPath scrollPosition:(UITableViewScrollPosition)scrollPosition animated:(BOOL)animated;
+- (void)noCheckEnterText:(NSString *)text intoViewWithAccessibilityLabel:(NSString *)label traits:(UIAccessibilityTraits)traits;
+@end

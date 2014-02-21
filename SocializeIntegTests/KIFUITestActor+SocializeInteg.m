@@ -59,13 +59,69 @@
     [self popNavigationControllerToIndex:0];
     [self waitForViewWithAccessibilityLabel:@"tableView"];
     
-    
-//    [[SZTestHelper sharedTestHelper] removeAuthenticationInfo];
+    [[Socialize sharedSocialize] removeAuthenticationInfo];
     [SZTwitterUtils unlink];
     [SZFacebookUtils unlink];
     [[STIntegListViewController sharedSampleListViewController] setEntity:nil];
 }
 
+//toggles between portrait and landscape modes
+- (void)rotateDevice {
+    UIInterfaceOrientation currentOrientation = [UIApplication sharedApplication].statusBarOrientation;
+    UIInterfaceOrientation newOrientation = currentOrientation == UIInterfaceOrientationLandscapeLeft ?
+    UIInterfaceOrientationPortrait :
+    UIInterfaceOrientationLandscapeLeft;
+    UIDevice* device = [UIDevice currentDevice];
+    SEL message = NSSelectorFromString(@"setOrientation:");
+    
+    if( [device respondsToSelector: message] ) {
+        NSMethodSignature* signature = [UIDevice instanceMethodSignatureForSelector: message];
+        NSInvocation* invocation = [NSInvocation invocationWithMethodSignature: signature];
+        [invocation setTarget: device];
+        [invocation setSelector: message];
+        [invocation setArgument: &newOrientation atIndex: 2];
+        [invocation invoke];
+    }
+}
+
+- (void)authWithTwitter {
+    [self waitForViewWithAccessibilityLabel:@"Twitter"];
+    [self waitForTappableViewWithAccessibilityLabel:@"Username or email"];
+    [self waitForAbsenceOfViewWithAccessibilityLabel:@"In progress"];
+    
+    NSLog(@"Waiting for web view");
+    [self waitForTimeInterval:3];
+    [self noCheckEnterText:@"mr_socialize"  intoViewWithAccessibilityLabel:@"Username or email" traits:UIAccessibilityTraitNone];
+    
+    [self noCheckEnterText:@"supersecret" intoViewWithAccessibilityLabel:@"Password" traits:UIAccessibilityTraitNone];
+    [self tapViewWithAccessibilityLabel:@"Authorize app"];
+}
+
+- (void)noCheckEnterText:(NSString *)text intoViewWithAccessibilityLabel:(NSString *)label traits:(UIAccessibilityTraits)traits {
+    NSLog(@"Type the text \"%@\" into the view with accessibility label \"%@\"", text, label);
+    
+    UIView *view = nil;
+    UIAccessibilityElement *element = nil;
+    
+    [self waitForAccessibilityElement:&element view:&view withLabel:label value:nil traits:traits tappable:YES];
+    [self tapAccessibilityElement:element inView:view];
+    [self enterTextIntoCurrentFirstResponder:text];
+}
+
+- (void)openSocializeDirectURLNotificationWithURL:(NSString*)url {
+    NSLog(@"Open direct url");
+    [self runBlock:^KIFTestStepResult(NSError *__autoreleasing *error) {
+        NSDictionary *socializeInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+                                       url, @"url",
+                                       @"developer_direct_url", @"notification_type",
+                                       nil];
+        NSDictionary *userInfo = [NSDictionary dictionaryWithObject:socializeInfo forKey:@"socialize"];
+        
+        [Socialize handleNotification:userInfo];
+        
+        return KIFTestStepResultSuccess;
+    }];
+}
 
 - (UIView*)viewWithAccessibilityLabel:(NSString*)label {
     UIAccessibilityElement *element = [[UIApplication sharedApplication] accessibilityElementWithLabel:label accessibilityValue:nil traits:UIAccessibilityTraitNone];
@@ -87,7 +143,6 @@
         return KIFTestStepResultSuccess;
     }];
 }
-
 
 - (void)scrollAndTapRowInTableViewWithAccessibilityLabel:(NSString*)tableViewLabel atIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"Tap row %d in tableView with label %@", [indexPath row], tableViewLabel);

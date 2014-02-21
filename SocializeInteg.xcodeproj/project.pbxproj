@@ -30,6 +30,7 @@
 		2CB1E57E18B55C5B00DAD2F6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CB1E57D18B55C5B00DAD2F6 /* QuartzCore.framework */; };
 		2CB1E58018B55C6100DAD2F6 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CB1E57F18B55C6100DAD2F6 /* CoreLocation.framework */; };
 		2CB1E58218B55C6900DAD2F6 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CB1E58118B55C6900DAD2F6 /* MessageUI.framework */; };
+		2CB3442C18B7EAFE002323DB /* TestAppHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CB3442B18B7EAFE002323DB /* TestAppHelper.m */; };
 		5DAFA5B2CAF644EBB1E3DC6F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 62F8C6B5DE944F96B3FEB355 /* libPods.a */; };
 		C05DD5FDC849427FB5C5F09C /* libPods-SocializeIntegTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6340933BF8424A8F9681E83F /* libPods-SocializeIntegTests.a */; };
 /* End PBXBuildFile section */
@@ -76,6 +77,8 @@
 		2CB1E57D18B55C5B00DAD2F6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		2CB1E57F18B55C6100DAD2F6 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		2CB1E58118B55C6900DAD2F6 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		2CB3442A18B7EAFE002323DB /* TestAppHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestAppHelper.h; sourceTree = "<group>"; };
+		2CB3442B18B7EAFE002323DB /* TestAppHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestAppHelper.m; sourceTree = "<group>"; };
 		58050F449F15405998DB4357 /* Pods-SocializeIntegTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SocializeIntegTests.xcconfig"; path = "Pods/Pods-SocializeIntegTests.xcconfig"; sourceTree = "<group>"; };
 		62F8C6B5DE944F96B3FEB355 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6340933BF8424A8F9681E83F /* libPods-SocializeIntegTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SocializeIntegTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -185,6 +188,8 @@
 		2C74938F18B3E11B00B81FFF /* SocializeIntegTests */ = {
 			isa = PBXGroup;
 			children = (
+				2CB3442A18B7EAFE002323DB /* TestAppHelper.h */,
+				2CB3442B18B7EAFE002323DB /* TestAppHelper.m */,
 				2C74939518B3E11B00B81FFF /* SocializeIntegTests.m */,
 				2C7493A418B4320300B81FFF /* KIFUITestActor+SocializeInteg.h */,
 				2C7493A518B4320300B81FFF /* KIFUITestActor+SocializeInteg.m */,
@@ -379,6 +384,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CB3442C18B7EAFE002323DB /* TestAppHelper.m in Sources */,
 				2C7493A618B4320300B81FFF /* KIFUITestActor+SocializeInteg.m in Sources */,
 				2C74939618B3E11B00B81FFF /* SocializeIntegTests.m in Sources */,
 			);

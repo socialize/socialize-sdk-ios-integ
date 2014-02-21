@@ -14,7 +14,7 @@
 #import <KIF/UIAccessibilityElement-KIFAdditions.h>
 #import <KIF/CGGeometry-KIFAdditions.h>
 #import <KIF/UIWindow-KIFAdditions.h>
-
+#import "TestAppHelper.h"
 
 static NSString *UUIDString() {
     CFUUIDRef	uuidObj = CFUUIDCreate(nil);
@@ -26,7 +26,6 @@ static NSString *UUIDString() {
 static NSString *TestAppKIFTestControllerRunID = nil;
 
 @interface SocializeIntegTests : XCTestCase
-
 @end
 
 @implementation SocializeIntegTests
@@ -42,10 +41,6 @@ static NSString *TestAppKIFTestControllerRunID = nil;
 
 - (void)tearDown {
     [super tearDown];
-    
-    //TODO this should happen after all tests
-//    [Socialize storeUIErrorAlertsDisabled:NO];
-//    [Socialize storeLocationSharingDisabled:NO];
 }
 
 - (void)testActionBar {
@@ -76,6 +71,61 @@ static NSString *TestAppKIFTestControllerRunID = nil;
     [tester tapViewWithAccessibilityLabel:@"Cancel"];
 }
 
+- (void)testLikeButton {
+    // Set up a test entity
+    NSString *entityKey = [TestAppHelper testURL:[NSString stringWithFormat:@"%s/entity1", sel_getName(_cmd)]];
+    id<SZEntity> entity = [SZEntity entityWithKey:entityKey name:@"Test"];
+    [[STIntegListViewController sharedSampleListViewController] setEntity:entity];
+    
+    [tester showButtonExample];
+    
+    [tester tapViewWithAccessibilityLabel:@"like button"];
+    [tester tapViewWithAccessibilityLabel:@"Skip"];
+    
+    [tester verifyActionBarLikesAtCount:1];
+    
+    [tester tapViewWithAccessibilityLabel:@"like button"];
+    [tester tapViewWithAccessibilityLabel:@"Done"];
+}
+
+- (void) testLikeNoAuth {
+    [tester showLikeEntityRow];
+    [tester tapViewWithAccessibilityLabel:@"Skip"];
+    [tester waitForViewWithAccessibilityLabel:@"tableView"];
+}
+
+- (void) testLikeTwitterAuth {
+    [tester showLikeEntityRow];
+    [tester tapViewWithAccessibilityLabel:@"Twitter"];
+    [tester authWithTwitter];
+    
+    [tester tapViewWithAccessibilityLabel:@"Like"];
+    [tester waitForViewWithAccessibilityLabel:@"tableView"];
+}
+
+- (void) testShareTwitterAuth {
+    [tester showShareDialog];
+    [tester setOn:YES forSwitchWithAccessibilityLabel:@"Twitter Switch"];
+    [tester authWithTwitter];
+    [tester tapViewWithAccessibilityLabel:@"Continue"];
+    [tester waitForViewWithAccessibilityLabel:@"Comment Entry"];
+    //unite test using date-time to avoid failed duplicate Twitter updates
+    NSDate *date = [NSDate date];
+    NSString *dateStr = [NSDateFormatter localizedStringFromDate:date dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterMediumStyle];
+    [tester enterText:[NSString stringWithFormat:@"Share to Twitter: %@", dateStr] intoViewWithAccessibilityLabel:@"Comment Entry"];
+    [tester tapViewWithAccessibilityLabel:@"Continue"];
+    [tester waitForViewWithAccessibilityLabel:@"tableView"];
+}
+
+- (void) testComposeCommentNoAuth {
+    [tester showCommentComposer];
+    [tester enterText:@"Anonymous Comment"  intoViewWithAccessibilityLabel:@"Comment Entry"];
+    [tester tapViewWithAccessibilityLabel:@"Continue"];
+    [tester tapViewWithAccessibilityLabel:@"Skip"];
+    [tester waitForViewWithAccessibilityLabel:@"tableView"];
+}
+
+//convenience methods
 
 + (NSString*)runID {
     if (TestAppKIFTestControllerRunID == nil) {
