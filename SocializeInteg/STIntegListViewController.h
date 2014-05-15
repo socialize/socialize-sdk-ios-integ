@@ -17,6 +17,7 @@ extern NSString *kFacebookSection;
 extern NSString *kTwitterSection;
 extern NSString *kSmartAlertsSection;
 extern NSString *kActionBarSection;
+extern NSString *kSupportIssuesSection;
 
 extern NSString *kShowLinkDialogRow;
 extern NSString *kShowUserProfileRow;
@@ -26,9 +27,11 @@ extern NSString *kLinkToFacebookRow;
 extern NSString *kLinkToTwitterRow;
 extern NSString *kLikeEntityRow;
 extern NSString *kShowShareRow;
+extern NSString *kCustomEntityRow;
 extern NSString *kHandleDirectURLSmartAlertRow;
 extern NSString *kShowActionBarExampleRow;
 extern NSString *kShowButtonsExampleRow;
+extern NSString *kSupportIssueRow;
 
 @interface STIntegListViewController : UITableViewController
 

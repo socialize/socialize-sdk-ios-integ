@@ -9,6 +9,7 @@
 #import "STIntegListViewController.h"
 #import "ActionBarExampleViewController.h"
 #import "ButtonExampleViewController.h"
+#import "SZFacebookUtils.h"
 
 static NSString *CellIdentifier = @"CellIdentifier";
 
@@ -31,6 +32,7 @@ NSString *kTwitterSection = @"kTwitterSection";
 NSString *kSmartAlertsSection = @"kSmartAlertsSection";
 NSString *kActionBarSection = @"kActionBarSection";
 NSString *kButtonsExampleSection = @"kButtonsExampleSection";
+NSString *kSupportIssuesSection = @"kSupportIssuesSection";
 
 // Rows
 NSString *kShowLinkDialogRow = @"kShowLinkDialogRow";
@@ -41,10 +43,12 @@ NSString *kLinkToFacebookRow = @"kLinkToFacebookRow";
 NSString *kLinkToTwitterRow = @"kLinkToTwitterRow";
 NSString *kLikeEntityRow = @"kLikeEntityRow";
 NSString *kShowShareRow = @"kShowShareRow";
+NSString *kCustomEntityRow = @"kCustomEntityRow";
 NSString *kHandleDirectURLSmartAlertRow = @"kHandleDirectURLSmartAlertRow";
 NSString *kHandleDirectEntitySmartAlertRow = @"kHandleDirectEntitySmartAlertRow";
 NSString *kShowActionBarExampleRow = @"kShowActionBarExampleRow";
 NSString *kShowButtonsExampleRow = @"kShowButtonsExampleRow";
+NSString *kSupportIssueRow = @"kSupportIssueRow";
 
 static STIntegListViewController *sharedSampleListViewController;
 
@@ -198,7 +202,10 @@ static STIntegListViewController *sharedSampleListViewController;
         [SZShareUtils showShareDialogWithViewController:self options:options entity:self.entity completion:nil cancellation:nil];
         
     }]];
-
+    
+    [shareRows addObject:[self rowWithIdentifier:kCustomEntityRow text:@"Create Custom Entity" executionBlock:^{
+        [self createEntityWithCustomPageInfo];
+    }]];
     
     NSMutableArray *commentRows = [NSMutableArray array];
     [commentRows addObject:[self rowWithIdentifier:kShowCommentsListRow text:@"Show Comments List" executionBlock:^{
@@ -215,9 +222,6 @@ static STIntegListViewController *sharedSampleListViewController;
         
         // Present however you want here
         [self presentViewController:comments animated:NO completion:nil];
-        
-        
-        
     }]];
     
     [commentRows addObject:[self rowWithIdentifier:kShowCommentComposerRow text:@"Show Comment Composer" executionBlock:^{
@@ -249,6 +253,11 @@ static STIntegListViewController *sharedSampleListViewController;
         [self presentViewController:nav animated:YES completion:nil];
     }]];
     
+    NSMutableArray *supportIssueRows = [NSMutableArray array];
+    [supportIssueRows addObject:[self rowWithIdentifier:kSupportIssueRow text:@"Support Issue" executionBlock:^{
+        [self supportTest];
+    }]];
+    
     NSArray *sections = [NSArray arrayWithObjects:
                          [self sectionWithIdentifier:kConfigSection
                                                title:@"Configuration"
@@ -277,6 +286,10 @@ static STIntegListViewController *sharedSampleListViewController;
                          [self sectionWithIdentifier:kButtonsExampleSection
                                                title:@"Buttons Example"
                                                 rows:buttonsRows],
+                         
+                         [self sectionWithIdentifier:kSupportIssuesSection
+                                               title:@"Support Issues"
+                                                rows:supportIssueRows],
                          
                          nil];
 
@@ -313,6 +326,72 @@ static STIntegListViewController *sharedSampleListViewController;
             title, kSectionTitle,
             rows, kSectionRows,
             nil];
+}
+
+
+- (void)createEntityWithCustomPageInfo {
+    SZEntity *entity = [SZEntity entityWithKey:@"my_key" name:@"An Entity"];
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                            @"Some title for the page, if you don't want to use the entity name", @"szsd_title",
+                            @"Description text on the page if there is no URL to parse", @"szsd_description",
+                            @"http://the_url_to_your_thumbnail_image", @"szsd_thumb",
+                            nil];
+     
+    NSError *error = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:params options:0 error:&error];
+    NSAssert(error == nil, @"Error writing json: %@", [error localizedDescription]);
+    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    entity.meta = jsonString;
+    
+    [SZEntityUtils addEntity:entity
+                     success:^(id<SZEntity> serverEntity) {
+                         NSLog(@"Successfully updated entity meta: %@", [serverEntity meta]);
+    }
+                     failure:^(NSError *error) {
+                         NSLog(@"Failure: %@", [error localizedDescription]);
+    }];
+}
+
+//Various support test operations
+- (void)supportTest {
+    //set to date 30 days in future (preferred for FB access token)
+    NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
+    [dateComponents setDay:30];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDate *newDate = [calendar dateByAddingComponents:dateComponents toDate:[NSDate date] options:0];
+
+    [SZFacebookUtils linkWithAccessToken:[self facebookAccessToken]
+                          expirationDate:newDate
+                                 success:^(id user) {
+        SZUserSettings *settings = [SZUserUtils currentUserSettings];
+//        UIImage *newImage = img;
+//        settings.profileImage = newImage;
+        settings.bio = @"I love this app!";
+        settings.firstName = @"David";
+        settings.lastName = @"Jedeikin";
+        
+        [SZUserUtils saveUserSettings:settings
+                              success:^(SZUserSettings *settings, id updatedUser) {
+            
+                              }
+                              failure:^(NSError *error) {
+                                  NSLog(@"Broke: %@", [error localizedDescription]); //<--this is where i get the above response 
+                              }]; 
+    } failure:^(NSError *error) {
+        NSLog(@"FAIL!!");
+    }];
+}
+
+-(NSDictionary*)authInfoFromConfig {
+    NSBundle * bundle =  [NSBundle bundleForClass:[self class]];
+    NSString * configPath = [bundle pathForResource:@"SocializeApiInfo" ofType:@"plist"];
+    NSDictionary * configurationDictionary = [[NSDictionary alloc]initWithContentsOfFile:configPath];
+    return  [configurationDictionary objectForKey:@"Socialize API info"];
+}
+
+- (NSString*)facebookAccessToken {
+    NSDictionary *apiInfo = [self authInfoFromConfig];
+    return [apiInfo objectForKey:@"facebookToken"];
 }
 
 @end
