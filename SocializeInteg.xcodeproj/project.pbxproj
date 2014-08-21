@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C00B02719A549E2005EE0B9 /* FurryCautte.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2C00B02619A549E2005EE0B9 /* FurryCautte.jpg */; };
+		2C00B02919A55092005EE0B9 /* FurryCautte.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C00B02819A55092005EE0B9 /* FurryCautte.png */; };
 		2C74937118B3E11A00B81FFF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C74937018B3E11A00B81FFF /* Foundation.framework */; };
 		2C74937318B3E11A00B81FFF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C74937218B3E11A00B81FFF /* CoreGraphics.framework */; };
 		2C74937518B3E11A00B81FFF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C74937418B3E11A00B81FFF /* UIKit.framework */; };
@@ -46,6 +48,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2C00B02619A549E2005EE0B9 /* FurryCautte.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = FurryCautte.jpg; sourceTree = "<group>"; };
+		2C00B02819A55092005EE0B9 /* FurryCautte.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FurryCautte.png; sourceTree = "<group>"; };
 		2C74936D18B3E11A00B81FFF /* SocializeInteg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocializeInteg.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C74937018B3E11A00B81FFF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2C74937218B3E11A00B81FFF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -116,6 +120,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C00B02519A549E2005EE0B9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2C00B02819A55092005EE0B9 /* FurryCautte.png */,
+				2C00B02619A549E2005EE0B9 /* FurryCautte.jpg */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		2C74936418B3E11A00B81FFF = {
 			isa = PBXGroup;
 			children = (
@@ -169,6 +182,7 @@
 				2C7493A118B3EF0F00B81FFF /* STIntegListViewController.h */,
 				2C7493A218B3EF0F00B81FFF /* STIntegListViewController.m */,
 				2C74938218B3E11A00B81FFF /* Images.xcassets */,
+				2C00B02519A549E2005EE0B9 /* Resources */,
 				2C74937718B3E11A00B81FFF /* Supporting Files */,
 			);
 			path = SocializeInteg;
@@ -287,9 +301,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C00B02919A55092005EE0B9 /* FurryCautte.png in Resources */,
 				2CB1E57618B529E900DAD2F6 /* ActionBarExampleViewController.xib in Resources */,
 				2C74937B18B3E11A00B81FFF /* InfoPlist.strings in Resources */,
 				2C74938318B3E11A00B81FFF /* Images.xcassets in Resources */,
+				2C00B02719A549E2005EE0B9 /* FurryCautte.jpg in Resources */,
 				2CB1E57818B529E900DAD2F6 /* ButtonExampleViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

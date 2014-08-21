@@ -354,32 +354,51 @@ static STIntegListViewController *sharedSampleListViewController;
 
 //Various support test operations
 - (void)supportTest {
-    //set to date 30 days in future (preferred for FB access token)
-    NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
-    [dateComponents setDay:30];
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDate *newDate = [calendar dateByAddingComponents:dateComponents toDate:[NSDate date] options:0];
-
-    [SZFacebookUtils linkWithAccessToken:[self facebookAccessToken]
-                          expirationDate:newDate
-                                 success:^(id user) {
-        SZUserSettings *settings = [SZUserUtils currentUserSettings];
-//        UIImage *newImage = img;
-//        settings.profileImage = newImage;
-        settings.bio = @"I love this app!";
-        settings.firstName = @"David";
-        settings.lastName = @"Jedeikin";
-        
-        [SZUserUtils saveUserSettings:settings
-                              success:^(SZUserSettings *settings, id updatedUser) {
-            
-                              }
-                              failure:^(NSError *error) {
-                                  NSLog(@"Broke: %@", [error localizedDescription]); //<--this is where i get the above response 
-                              }]; 
-    } failure:^(NSError *error) {
-        NSLog(@"FAIL!!");
+    UIImage *image = [UIImage imageNamed:@"FurryCautte.png"];
+    NSData *imageData = UIImagePNGRepresentation(image);
+    
+    NSDictionary *paramss = @{
+                              @"status": @"twitter test post",
+                              @"media[]": imageData
+                              };
+    [SZTwitterUtils postWithViewController:self
+                                      path:@"1.1/statuses/update_with_media.json"
+                                    params:paramss
+                                 multipart:YES
+                                   success:^(id result) {
+        NSLog(@"Posted");
+    }
+                                   failure:^(NSError *error) {
+        NSLog(@"Failed %@", [error localizedDescription]); 
     }];
+    
+    
+//    //set to date 30 days in future (preferred for FB access token)
+//    NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
+//    [dateComponents setDay:30];
+//    NSCalendar *calendar = [NSCalendar currentCalendar];
+//    NSDate *newDate = [calendar dateByAddingComponents:dateComponents toDate:[NSDate date] options:0];
+//
+//    [SZFacebookUtils linkWithAccessToken:[self facebookAccessToken]
+//                          expirationDate:newDate
+//                                 success:^(id user) {
+//        SZUserSettings *settings = [SZUserUtils currentUserSettings];
+////        UIImage *newImage = img;
+////        settings.profileImage = newImage;
+//        settings.bio = @"I love this app!";
+//        settings.firstName = @"David";
+//        settings.lastName = @"Jedeikin";
+//        
+//        [SZUserUtils saveUserSettings:settings
+//                              success:^(SZUserSettings *settings, id updatedUser) {
+//            
+//                              }
+//                              failure:^(NSError *error) {
+//                                  NSLog(@"Broke: %@", [error localizedDescription]); //<--this is where i get the above response 
+//                              }]; 
+//    } failure:^(NSError *error) {
+//        NSLog(@"FAIL!!");
+//    }];
 }
 
 -(NSDictionary*)authInfoFromConfig {
