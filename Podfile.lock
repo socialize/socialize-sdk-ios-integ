@@ -20,29 +20,31 @@ PODS:
   - AFNetworking/UIKit (2.3.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - Facebook-iOS-SDK (3.9.0)
+  - Bolts (1.1.2)
+  - Facebook-iOS-SDK (3.17.0):
+    - Bolts
   - KIF/Core (2.0.0)
   - KIF/XCTest (2.0.0):
     - KIF/Core
   - Loopy (1.0.0-RC8):
     - AFNetworking
-  - Socialize (3.0.7.1):
-    - Facebook-iOS-SDK (~> 3.9.0)
+  - Socialize (3.0.8):
+    - Facebook-iOS-SDK (~> 3.17)
     - Loopy
     - Socialize/arc
     - Socialize/no-arc
     - SZBlocksKit
     - SZJSONKit
     - SZOAuthConsumer
-  - Socialize/arc (3.0.7.1):
-    - Facebook-iOS-SDK (~> 3.9.0)
+  - Socialize/arc (3.0.8):
+    - Facebook-iOS-SDK (~> 3.17)
     - Loopy
     - Socialize/no-arc
     - SZBlocksKit
     - SZJSONKit
     - SZOAuthConsumer
-  - Socialize/no-arc (3.0.7.1):
-    - Facebook-iOS-SDK (~> 3.9.0)
+  - Socialize/no-arc (3.0.8):
+    - Facebook-iOS-SDK (~> 3.17)
     - Loopy
     - SZBlocksKit
     - SZJSONKit
@@ -78,10 +80,11 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: 6d7b76aa5d04c8c37daad3eef4b7e3f2a7620da3
-  Facebook-iOS-SDK: e77b57ba1b0ca040e54df806093cdda32f1f8d25
+  Bolts: 2635e8698a630774689441047f3465d78c48d485
+  Facebook-iOS-SDK: f20274d809f112ba540842e2b6cbe50128d51b7b
   KIF: 4e0fcfe8f21fc555e74d9c3d64bb9a70c0406a82
   Loopy: 5cc45fe5f94cb5c2e14eddbdfd634cc1a7a1dd12
-  Socialize: 7d5e49d35723f6152fa3a9881d971b3709f59509
+  Socialize: 622a14d9b40bfaf357d1ae6741ad94e8fbd61e28
   SZBlocksKit: 659b06061c9179b20674e8f475661187d4f7a6a6
   SZJSONKit: fd05b670dc400e1f9ba44c8bb23c44897e71b9ec
   SZOAuthConsumer: b62a98025846d76778ca4f24528a5c51b8e66ee6
