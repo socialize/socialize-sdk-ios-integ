@@ -48,6 +48,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		13893349902FA56CE3FE7999 /* Pods-SocializeIntegTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SocializeIntegTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SocializeIntegTests/Pods-SocializeIntegTests.release.xcconfig"; sourceTree = "<group>"; };
 		2C00B02619A549E2005EE0B9 /* FurryCautte.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = FurryCautte.jpg; sourceTree = "<group>"; };
 		2C00B02819A55092005EE0B9 /* FurryCautte.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FurryCautte.png; sourceTree = "<group>"; };
 		2C74936D18B3E11A00B81FFF /* SocializeInteg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocializeInteg.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -83,10 +84,11 @@
 		2CB1E58118B55C6900DAD2F6 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		2CB3442A18B7EAFE002323DB /* TestAppHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestAppHelper.h; sourceTree = "<group>"; };
 		2CB3442B18B7EAFE002323DB /* TestAppHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestAppHelper.m; sourceTree = "<group>"; };
-		58050F449F15405998DB4357 /* Pods-SocializeIntegTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SocializeIntegTests.xcconfig"; path = "Pods/Pods-SocializeIntegTests.xcconfig"; sourceTree = "<group>"; };
 		62F8C6B5DE944F96B3FEB355 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6340933BF8424A8F9681E83F /* libPods-SocializeIntegTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SocializeIntegTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F621B854D3CE494581D4B434 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		80ACE9858A0CE84A8954FF95 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		ABB1A7186C6C546137E2457E /* Pods-SocializeIntegTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SocializeIntegTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SocializeIntegTests/Pods-SocializeIntegTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D258FA5FFF611ACB696BBD14 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,8 +138,7 @@
 				2C74938F18B3E11B00B81FFF /* SocializeIntegTests */,
 				2C74936F18B3E11A00B81FFF /* Frameworks */,
 				2C74936E18B3E11A00B81FFF /* Products */,
-				F621B854D3CE494581D4B434 /* Pods.xcconfig */,
-				58050F449F15405998DB4357 /* Pods-SocializeIntegTests.xcconfig */,
+				93958841FA3DD03EFDDDDE61 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -219,6 +220,17 @@
 				2C74939218B3E11B00B81FFF /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		93958841FA3DD03EFDDDDE61 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				80ACE9858A0CE84A8954FF95 /* Pods.debug.xcconfig */,
+				D258FA5FFF611ACB696BBD14 /* Pods.release.xcconfig */,
+				ABB1A7186C6C546137E2457E /* Pods-SocializeIntegTests.debug.xcconfig */,
+				13893349902FA56CE3FE7999 /* Pods-SocializeIntegTests.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -348,7 +360,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-SocializeIntegTests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SocializeIntegTests/Pods-SocializeIntegTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		AAF319C063E749FD95829475 /* Check Pods Manifest.lock */ = {
@@ -378,7 +390,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -517,7 +529,7 @@
 		};
 		2C74939A18B3E11B00B81FFF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F621B854D3CE494581D4B434 /* Pods.xcconfig */;
+			baseConfigurationReference = 80ACE9858A0CE84A8954FF95 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -549,6 +561,7 @@
 					Security,
 					"-weak_framework",
 					Social,
+					"$(inherited)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -557,7 +570,7 @@
 		};
 		2C74939B18B3E11B00B81FFF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F621B854D3CE494581D4B434 /* Pods.xcconfig */;
+			baseConfigurationReference = D258FA5FFF611ACB696BBD14 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -589,6 +602,7 @@
 					Security,
 					"-weak_framework",
 					Social,
+					"$(inherited)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -597,7 +611,7 @@
 		};
 		2C74939D18B3E11B00B81FFF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 58050F449F15405998DB4357 /* Pods-SocializeIntegTests.xcconfig */;
+			baseConfigurationReference = ABB1A7186C6C546137E2457E /* Pods-SocializeIntegTests.debug.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SocializeInteg.app/SocializeInteg";
@@ -621,7 +635,7 @@
 		};
 		2C74939E18B3E11B00B81FFF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 58050F449F15405998DB4357 /* Pods-SocializeIntegTests.xcconfig */;
+			baseConfigurationReference = 13893349902FA56CE3FE7999 /* Pods-SocializeIntegTests.release.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SocializeInteg.app/SocializeInteg";
